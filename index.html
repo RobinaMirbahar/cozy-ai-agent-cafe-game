@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Paws: The Cozy AI Agent Cafe & Bakery 🐾🥐</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Cozy Top Navigation & HUD -->
+  <header class="cafe-header">
+    <div class="brand-box">
+      <div class="brand-logo" aria-hidden="true">🐾🥐</div>
+      <div>
+        <h1>Prompt Paws <span class="badge-pill">Cozy AI Agent Cafe</span></h1>
+        <p class="subtitle">Route Orders, Filter Spicy Injections & Bake Hallucination-Free Treats!</p>
+      </div>
+    </div>
+
+    <div class="hud-stats">
+      <div class="stat-pill coins-pill" title="Cafe Star Coins (Spend to place & upgrade AI Kitchen Stations)">
+        <span class="stat-icon">🪙</span>
+        <div>
+          <span class="stat-label">STAR COINS</span>
+          <span class="stat-value" id="hud-coins">250</span>
+        </div>
+      </div>
+
+      <div class="stat-pill served-pill" title="Happy Critter Customers Served">
+        <span class="stat-icon">🍰</span>
+        <div>
+          <span class="stat-label">ORDERS SERVED</span>
+          <span class="stat-value" id="hud-served">0 / 15</span>
+        </div>
+      </div>
+
+      <div class="stat-pill trust-pill" title="Cafe Reputation Hearts (Lost when Hallucinations or Prompt Injections slip through!)">
+        <span class="stat-icon">💖</span>
+        <div>
+          <span class="stat-label">CAFE HEARTS</span>
+          <span class="stat-value" id="hud-hearts">♥♥♥♥♥</span>
+        </div>
+      </div>
+
+      <div class="stat-pill cache-pill" title="Token Cost Saved via Context Caching & Smart Routing">
+        <span class="stat-icon">🍪</span>
+        <div>
+          <span class="stat-label">CACHE SAVINGS</span>
+          <span class="stat-value" id="hud-savings">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <button id="btn-play-pause" class="btn btn-primary" title="Start or Pause the Cafe Shift (Spacebar)">
+        ▶️ Open Cafe
+      </button>
+      <button id="btn-speed" class="btn btn-secondary" title="Toggle Shift Speed (1x / 2x)">
+        ⚡ 1x
+      </button>
+      <button id="btn-blueprint" class="btn btn-magic" title="Auto-Place Optimal AI Kitchen Layout for this Level!">
+        ✨ Auto-Chef Blueprint
+      </button>
+      <button id="btn-reset" class="btn btn-outline" title="Reset Current Shift">
+        🔄 Reset
+      </button>
+      <button id="btn-audio" class="btn btn-icon" title="Toggle Cozy Cafe Music & Chimes">
+        🔊
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Cozy Cafe Workspace -->
+  <main class="cafe-workspace">
+    <!-- Left Sidebar: AI Kitchen Stations Palette & Level Selector -->
+    <aside class="sidebar left-sidebar">
+      <section class="panel level-panel">
+        <div class="panel-header">
+          <h2>📖 Shift Chapter</h2>
+          <span class="level-badge" id="level-number-badge">Day 1 of 7</span>
+        </div>
+        <select id="level-select" class="level-select" aria-label="Select Cafe Shift Level"></select>
+        <p id="level-story" class="level-story"></p>
+        <div class="order-Forecast" id="order-forecast"></div>
+      </section>
+
+      <section class="panel palette-panel">
+        <div class="panel-header">
+          <h2>🧁 AI Kitchen Stations</h2>
+          <span class="hint-tag">Click Station → Click Tile</span>
+        </div>
+        <div id="station-palette" class="station-list"></div>
+      </section>
+    </aside>
+
+    <!-- Center: Interactive 60FPS Cozy Bakery Canvas -->
+    <section class="canvas-stage">
+      <div class="canvas-frame">
+        <canvas id="cafe-canvas" width="900" height="600"></canvas>
+
+        <!-- Floating Inspection / Upgrade Popover for Placed Stations -->
+        <div id="station-inspector" class="station-inspector hidden">
+          <div class="inspector-header">
+            <span id="insp-title">Station Name</span>
+            <button id="insp-close" class="btn-tiny">✖</button>
+          </div>
+          <p id="insp-desc" class="insp-desc"></p>
+          <div class="insp-metrics" id="insp-metrics"></div>
+          <div class="insp-actions">
+            <button id="btn-upgrade-station" class="btn btn-magic btn-sm">⬆️ Upgrade (🪙 60)</button>
+            <button id="btn-sell-station" class="btn btn-danger btn-sm">🧹 Refund (+🪙 35)</button>
+          </div>
+        </div>
+
+        <!-- Shift Victory / Retry Modal Overlay -->
+        <div id="shift-modal" class="shift-modal hidden">
+          <div class="modal-card">
+            <div class="modal-emoji" id="modal-emoji">🎉🐾</div>
+            <h2 id="modal-title">Shift Complete!</h2>
+            <p id="modal-subtitle"></p>
+            <div class="modal-lesson-box">
+              <h3>🧠 Real-World AI Engineering Takeaway</h3>
+              <p id="modal-lesson"></p>
+            </div>
+            <div class="modal-stats" id="modal-stats"></div>
+            <div class="modal-buttons">
+              <button id="btn-modal-next" class="btn btn-primary">🍓 Next Day Shift →</button>
+              <button id="btn-modal-retry" class="btn btn-secondary">🔄 Replay Shift</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Quick Action Bar -->
+      <div class="stage-footer">
+        <div class="legend-pills">
+          <span class="legend-item"><i class="dot dot-croissant"></i> 🥐 Prompt Croissant (Fast LLM)</span>
+          <span class="legend-item"><i class="dot dot-tart"></i> 🍓 RAG Berry Tart (Needs Vector Garden)</span>
+          <span class="legend-item"><i class="dot dot-boba"></i> 🧋 Code Boba (Needs Tool Blender)</span>
+          <span class="legend-item"><i class="dot dot-souffle"></i> 🍮 Deep Soufflé (Needs Reasoning Oven)</span>
+          <span class="legend-item"><i class="dot dot-jalapeno"></i> 🌶️ Spicy Injection (Needs Guardrail Sieve!)</span>
+        </div>
+        <div class="shortcut-hint">
+          💡 <strong>Tip:</strong> Click any glowing pastel kitchen tile to place a station, or click <strong>✨ Auto-Chef Blueprint</strong> to watch the optimal AI pipeline in action!
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Sidebar: Chef Whiskers AI Architecture Coach & Live Telemetry -->
+    <aside class="sidebar right-sidebar">
+      <section class="panel coach-panel">
+        <div class="coach-avatar-row">
+          <div class="coach-avatar" id="coach-avatar">🐱‍🍳</div>
+          <div>
+            <h2>Chef Whiskers</h2>
+            <span class="coach-role">Staff AI Pastry Architect</span>
+          </div>
+        </div>
+        <div class="coach-bubble" id="coach-bubble">
+          Welcome to <strong>Prompt Paws Cafe</strong>! Place a <strong>🥐 Flash Pastry Oven</strong> on a glowing kitchen counter tile, or click <strong>✨ Auto-Chef Blueprint</strong> to see a 5-star AI pipeline!
+        </div>
+        <div class="linter-alerts" id="linter-alerts"></div>
+      </section>
+
+      <section class="panel telemetry-panel">
+        <div class="panel-header">
+          <h2>📊 Kitchen Telemetry</h2>
+          <span class="badge-pill" id="fps-badge">60 FPS</span>
+        </div>
+        <div class="telemetry-grid">
+          <div class="metric-card">
+            <span class="m-label">Hallucination Rate</span>
+            <span class="m-val" id="metric-hallucination">0%</span>
+          </div>
+          <div class="metric-card">
+            <span class="m-label">Injections Blocked</span>
+            <span class="m-val" id="metric-blocked">0 🛡️</span>
+          </div>
+          <div class="metric-card">
+            <span class="m-label">RAG Grounded Tarts</span>
+            <span class="m-val" id="metric-rag">0 🍓</span>
+          </div>
+          <div class="metric-card">
+            <span class="m-label">Active Cat-Chefs</span>
+            <span class="m-val" id="metric-chefs">0 🐾</span>
+          </div>
+        </div>
+
+        <div class="recipe-guide">
+          <h3>🧁 How AI Recipes Work</h3>
+          <ul class="recipe-list">
+            <li><strong>🍪 Cache Cookie Jar:</strong> Instantly serves repeat prompts for 95% fewer tokens!</li>
+            <li><strong>🛡️ Guardrail Sieve:</strong> Catches spicy 🌶️ Prompt-Injection Jalapeños before they burn the oven!</li>
+            <li><strong>🍓 Vector Berry Patch:</strong> Grounds Berry Tarts in real facts so they don't become 👻 Hallucination Puffs!</li>
+            <li><strong>🧋 Tool-Call Blender:</strong> Runs deterministic Python math & API boba recipes accurately.</li>
+            <li><strong>🐱 Subagent Sous-Chef:</strong> Splits huge multi-part banquet orders into parallel mini-tasks!</li>
+          </ul>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <script src="audio.js"></script>
+  <script src="levels.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

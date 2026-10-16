@@ -64,6 +64,9 @@
       <button id="btn-blueprint" class="btn btn-magic" title="Auto-Place Optimal AI Kitchen Layout for this Level!">
         ✨ Auto-Chef Blueprint
       </button>
+      <button id="btn-howto" class="btn btn-secondary" title="How to Play & AI Architecture Guide">
+        ❓ How to Play
+      </button>
       <button id="btn-reset" class="btn btn-outline" title="Reset Current Shift">
         🔄 Reset
       </button>
@@ -129,6 +132,49 @@
             <div class="modal-buttons">
               <button id="btn-modal-next" class="btn btn-primary">🍓 Next Day Shift →</button>
               <button id="btn-modal-retry" class="btn btn-secondary">🔄 Replay Shift</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Welcome / How to Play in 3 Easy Steps Modal Overlay -->
+        <div id="tutorial-modal" class="shift-modal">
+          <div class="modal-card tutorial-card">
+            <div class="tutorial-header-row">
+              <span class="badge-pill">🐾 Quick 30-Second Guide</span>
+              <button id="btn-tutorial-close" class="btn-tiny" title="Close Guide">✖</button>
+            </div>
+            <h2>Welcome to Prompt Paws: Cozy AI Cafe! 🥐🤖</h2>
+            <p class="tutorial-lead">
+              <strong>What is this game?</strong> It's a cozy <strong>Tower-Defense game for AI Agent Architecture</strong>!
+              Woodland critters send <strong>Pastry Orders (= User Prompts)</strong> down the conveyor belt, and you place
+              <strong>Robot-Cat Chefs (= AI Models, Guardrails &amp; RAG)</strong> on counter slots to bake them before the Pickup Window!
+            </p>
+            <img
+              src="https://files.catbox.moe/i9wg40.jpg"
+              onerror="this.onerror=null;this.src='assets/how_to_play_prompt_paws.jpg';"
+              alt="How to Play Prompt Paws in 3 Easy Steps"
+              class="tutorial-banner-img"
+            />
+            <div class="tutorial-steps-grid">
+              <div class="tut-step-box">
+                <span class="tut-step-num">STEP 1</span>
+                <strong>🧁 Pick an AI Chef</strong>
+                <p>Click a station on the left menu (e.g. <strong>🥐 Flash Oven</strong> = Fast LLM, <strong>🛡️ Sieve</strong> = Guardrail, <strong>🍓 Berry Patch</strong> = RAG).</p>
+              </div>
+              <div class="tut-step-box">
+                <span class="tut-step-num">STEP 2</span>
+                <strong>➕ Click a Map Slot</strong>
+                <p>Click any glowing <strong>[➕ Slot]</strong> pad beside the conveyor belt to place your Robot-Cat Chef (click again to ⬆️ Upgrade!).</p>
+              </div>
+              <div class="tut-step-box">
+                <span class="tut-step-num">STEP 3</span>
+                <strong>▶️ Open Cafe!</strong>
+                <p>Click <strong>▶️ Open Cafe</strong> to start baking—or click <strong>✨ Auto-Chef Blueprint</strong> to watch an optimal AI pipeline automatically!</p>
+              </div>
+            </div>
+            <div class="modal-buttons">
+              <button id="btn-tutorial-guided" class="btn btn-primary">🎮 Play Step-by-Step (Guided)</button>
+              <button id="btn-tutorial-demo" class="btn btn-magic">✨ Watch Auto-Play Demo Now!</button>
             </div>
           </div>
         </div>

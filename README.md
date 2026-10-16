@@ -16,6 +16,25 @@
 
 ---
 
+## 🎯 What Is This Game & How Do You Play? (30-Second Guide)
+
+**Prompt Paws** is a **cozy Tower-Defense & Kitchen-Management game for AI Agent Architecture**!
+Instead of fighting monsters, you are the **Head AI Pastry Architect** running a pastel bakery:
+- **Customer Pastry Orders (`🥐`, `🍪`, `🌶️`, `🍓`, `🧋`, `🍮`) = Incoming User Prompts** moving along the bakery conveyor belt toward the **Pickup Window (`🛎️`)**.
+- **Robot-Cat Kitchen Stations = Real-World AI Engineering Components** (Fast LLMs, Context Caches, Input Guardrails, RAG Vector DBs, Deterministic Tool Callers, System-2 Reasoning Models, and Multi-Agent Sous-Chefs) that intercept and process prompts before they reach the customer!
+- **How You Win or Lose:** If an order is baked by the right AI Chef Station, you earn **🪙 Star Coins**! If an unbaked order, an ungrounded **👻 Hallucination Puff**, or a sneaky **🌶️ Prompt Injection** slips all the way to the Pickup Window, you lose a **💖 Cafe Heart**!
+
+![How to Play Prompt Paws in 3 Easy Steps](https://files.catbox.moe/i9wg40.jpg)
+
+### 🕹️ How to Play in 3 Easy Steps:
+1. **STEP 1 — Pick an AI Chef Station (Left Menu):** Click a station card on the left sidebar (start with **🥐 Flash Pastry Oven** for `🪙 60`). Look at the **Order Forecast chips** under the level story to see which prompt types are coming!
+2. **STEP 2 — Click Any `[➕ Slot]` Tile on the Map:** Click one of the 8 pastel counter pads (`Slot 1`–`Slot 8`) beside the conveyor belt to place your Robot-Cat Chef. *(Tip: Click a placed chef anytime to **⬆️ Upgrade** its baking speed or **🧹 Refund** it!)*
+3. **STEP 3 — Click `▶️ Open Cafe` (or `✨ Auto-Chef Blueprint`):**
+   - Click **`▶️ Open Cafe`** (or press `Spacebar`) to start the shift and watch your Robot-Cat Chefs bake!
+   - **Want to watch an instant demo first?** Click **`✨ Auto-Chef Blueprint`** in the top bar and the game will automatically build the optimal AI pipeline for the current level and run it for you!
+
+---
+
 ## ✨ Why Another System Design Game—But Cozy?
 
 While dark cyberpunk server-defense games teach cloud infrastructure through DDoS lasers and exploding servers, **Prompt Paws** reimagines **modern AI Agent Architecture** as a warm, stress-free, pastel pastry kitchen!

@@ -552,6 +552,81 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Interactive How-To-Play Tutorial Modal */
+.tutorial-card {
+  max-width: 680px;
+  padding: 20px 24px;
+}
+
+.tutorial-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.tutorial-lead {
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  background: #fff8fb;
+  border: 1.5px solid #ffd4e3;
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.tutorial-banner-img {
+  width: 100%;
+  max-height: 225px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 2.5px solid #e2d1ff;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(109, 63, 209, 0.12);
+}
+
+.tutorial-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.tut-step-box {
+  background: linear-gradient(135deg, #fff9fc, #f8f4ff);
+  border: 1.5px solid #e4d4ff;
+  border-radius: 12px;
+  padding: 9px 10px;
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.tut-step-num {
+  display: inline-block;
+  background: #8b5cf6;
+  color: #ffffff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 99px;
+  margin-bottom: 4px;
+}
+
+.tut-step-box strong {
+  display: block;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
+.tut-step-box p {
+  color: var(--text-muted);
+  margin: 0;
 }
 
 /* Bottom Stage Footer */

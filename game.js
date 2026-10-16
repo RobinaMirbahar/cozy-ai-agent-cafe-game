@@ -45,6 +45,13 @@
   const btnModalNext = document.getElementById('btn-modal-next');
   const btnModalRetry = document.getElementById('btn-modal-retry');
 
+  // Tutorial Modal Elements
+  const btnHowTo = document.getElementById('btn-howto');
+  const tutorialModal = document.getElementById('tutorial-modal');
+  const btnTutorialClose = document.getElementById('btn-tutorial-close');
+  const btnTutorialGuided = document.getElementById('btn-tutorial-guided');
+  const btnTutorialDemo = document.getElementById('btn-tutorial-demo');
+
   // Order metadata
   const ORDER_META = {
     croissant: { icon: '🥐', label: 'Prompt Croissant', color: '#ffb74d', reward: 22, critter: '🐰' },
@@ -128,6 +135,31 @@
 
     btnBlueprint.addEventListener('click', applyAutoBlueprint);
     btnReset.addEventListener('click', () => loadLevel(currentLevelIdx));
+
+    if (btnHowTo && tutorialModal) {
+      btnHowTo.addEventListener('click', () => {
+        running = false;
+        btnPlayPause.textContent = '▶️ Open Cafe';
+        tutorialModal.classList.remove('hidden');
+      });
+    }
+    if (btnTutorialClose && tutorialModal) {
+      btnTutorialClose.addEventListener('click', () => {
+        tutorialModal.classList.add('hidden');
+      });
+    }
+    if (btnTutorialGuided && tutorialModal) {
+      btnTutorialGuided.addEventListener('click', () => {
+        tutorialModal.classList.add('hidden');
+        coachBubble.innerHTML = `🐾 <strong>Step 1:</strong> Click the glowing <strong>[➕ Slot 2]</strong> pad at the top of the conveyor belt to place your first <strong>🥐 Flash Pastry Oven</strong>!`;
+      });
+    }
+    if (btnTutorialDemo && tutorialModal) {
+      btnTutorialDemo.addEventListener('click', () => {
+        tutorialModal.classList.add('hidden');
+        applyAutoBlueprint();
+      });
+    }
 
     btnAudio.addEventListener('click', () => {
       const on = window.cafeAudio.toggle();
@@ -238,9 +270,30 @@
 
   function togglePlay() {
     window.cafeAudio.init();
+    if (tutorialModal && !tutorialModal.classList.contains('hidden')) {
+      tutorialModal.classList.add('hidden');
+    }
     if (Object.keys(placedStations).length === 0 && !running) {
-      // Helpful nudge if no stations placed yet
-      coachBubble.innerHTML = `🐾 <strong>Meow!</strong> You haven't placed any kitchen stations yet! Click a glowing counter tile or press <strong>✨ Auto-Chef Blueprint</strong> so our Robot-Cat Chefs can bake!`;
+      // Friendly Starter Protection: Auto-place a starter Flash Pastry Oven on Slot 2 so first-time players never lose with an empty kitchen!
+      const starterDef = window.STATION_CATALOG['flash_oven'];
+      if (starterDef && coins >= starterDef.cost) {
+        coins -= starterDef.cost;
+        placedStations[1] = {
+          type: 'flash_oven',
+          level: 1,
+          busyTimer: 0,
+          maxTimer: starterDef.processTime,
+          currentOrder: null,
+          servedTotal: 0,
+          catPhase: 0
+        };
+        window.cafeAudio.playPlace();
+        spawnBurst(COUNTER_SLOTS[1].x, COUNTER_SLOTS[1].y, starterDef.color, 12);
+        spawnFloatingText(COUNTER_SLOTS[1].x, COUNTER_SLOTS[1].y - 28, '🥐 Starter AI Chef Placed!', '#6d28d9');
+        coachBubble.innerHTML = `🐾 <strong>Meow!</strong> I placed a starter <strong>🥐 Flash Pastry Oven</strong> on <strong>Slot 2</strong> for you! Click more <strong>[➕ Slot]</strong> pads to add AI chefs as orders arrive!`;
+        updateHUD();
+        evaluateKitchenArchitecture();
+      }
     }
     running = !running;
     btnPlayPause.textContent = running ? '⏸️ Pause Shift' : '▶️ Open Cafe';
@@ -884,6 +937,57 @@
       }
       ctx.restore();
     });
+
+    // 8. Draw On-Canvas Step-by-Step Guided Callout when Shift Hasn't Started
+    if (!running && servedCount === 0) {
+      const numStations = Object.keys(placedStations).length;
+      const pulse = Math.sin(frameCount * 0.1) * 4;
+      ctx.save();
+      if (numStations === 0) {
+        // Highlight Slot 2 (x: 450, y: 82) with a glowing ring + callout pill
+        const targetSlot = COUNTER_SLOTS[1];
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.lineWidth = 3.5;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.roundRect(targetSlot.x - 44, targetSlot.y - 40, 88, 80, 20);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Callout pill below Slot 2
+        const bx = 450;
+        const by = 192 + pulse;
+        ctx.fillStyle = '#6d28d9';
+        ctx.beginPath();
+        ctx.roundRect(bx - 235, by - 18, 470, 34, 17);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 13px Fredoka, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('👆 STEP 1: Click [➕ Slot 2] above to place your first 🥐 AI Chef!', bx, by + 4);
+      } else {
+        // Player placed at least 1 station -> prompt them to click Open Cafe!
+        const bx = 450;
+        const by = 192 + pulse;
+        ctx.fillStyle = '#059669';
+        ctx.beginPath();
+        ctx.roundRect(bx - 245, by - 18, 490, 34, 17);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 13px Fredoka, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🎉 STEP 2: Kitchen Ready! Click [▶️ Open Cafe] at top-right (or Spacebar)!', bx, by + 4);
+      }
+      ctx.restore();
+    }
   }
 
   function drawEndpointBadge(x, y, text, color) {

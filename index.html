@@ -235,6 +235,45 @@
           </div>
         </div>
 
+        <div class="recipe-guide" style="margin-top: 14px; border-top: 2px dashed #f3d5b5; padding-top: 12px;">
+          <h3>🧪 Chaos Mode: Invariant Contract Inspector</h3>
+          <p style="font-size: 0.78rem; color: #6b4f3a; margin-bottom: 8px;">
+            Toggle each production control below to inspect the exact <strong>Before vs. After Invariant Contract</strong> and intercepted tool-call trace:
+          </p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('contract-diff-box').innerHTML = document.getElementById('tpl-cache-off').innerHTML;">🍪 Cache OFF</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('contract-diff-box').innerHTML = document.getElementById('tpl-guardrail-off').innerHTML;">🛡️ Guardrail OFF</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('contract-diff-box').innerHTML = document.getElementById('tpl-rag-off').innerHTML;">🍓 RAG OFF</button>
+          </div>
+          <div id="contract-diff-box" style="background: #2b1d14; color: #fef3c7; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 10px; border-radius: 10px; line-height: 1.45;">
+            <div style="color: #fbbf24; font-weight: 700;">[INVARIANT: unsafe_tool_calls == 0]</div>
+            <div style="color: #34d399;">✓ BEFORE (Guardrail Sieve ON): PASS</div>
+            <div>  blocked: execute_oven_override(temp_c=450, bypass_allergen=True)</div>
+            <div style="color: #f87171; margin-top: 4px;">✗ AFTER (Guardrail Sieve OFF): FAIL</div>
+            <div>  unblocked tool call executed -> -1 Cafe Heart!</div>
+          </div>
+          <template id="tpl-cache-off">
+            <div style="color: #fbbf24; font-weight: 700;">[INVARIANT: prompt_tokens &lt;= cached_baseline]</div>
+            <div style="color: #34d399;">✓ Task Result &amp; Recipe Quality: IDENTICAL (PASS)</div>
+            <div style="color: #34d399;">✓ BEFORE (Cache Cookie Jar ON): 120 tokens/order (-92%)</div>
+            <div style="color: #f87171; margin-top: 4px;">✗ AFTER (Cache Cookie Jar OFF): 1,520 tokens/order (FAIL)</div>
+            <div>  reason: full menu prefix re-tokenized on every turn</div>
+          </template>
+          <template id="tpl-guardrail-off">
+            <div style="color: #fbbf24; font-weight: 700;">[INVARIANT: unsafe_tool_calls == 0]</div>
+            <div style="color: #34d399;">✓ BEFORE (Guardrail Sieve ON): PASS (Intercepted)</div>
+            <div>  blocked: execute_oven_override(temp_c=450, bypass_allergen=True)</div>
+            <div style="color: #f87171; margin-top: 4px;">✗ AFTER (Guardrail Sieve OFF): FAIL (Tool Executed)</div>
+            <div>  trace: spicy prompt injection reached tool executor</div>
+          </template>
+          <template id="tpl-rag-off">
+            <div style="color: #fbbf24; font-weight: 700;">[INVARIANT: cited_recipe_sku in active_catalog]</div>
+            <div style="color: #34d399;">✓ BEFORE (Vector Berry Patch ON): PASS (SKU-BERRY-04)</div>
+            <div style="color: #f87171; margin-top: 4px;">✗ AFTER (Vector Berry Patch OFF): FAIL (Hallucinated SKU)</div>
+            <div>  trace: ungrounded model invented 'Moonlight Cloudberry Glaze'</div>
+          </template>
+        </div>
+
         <div class="recipe-guide">
           <h3>🧁 How AI Recipes Work</h3>
           <ul class="recipe-list">

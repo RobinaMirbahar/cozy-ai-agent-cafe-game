@@ -1,5 +1,23 @@
 # 🐾🥐 Prompt Paws: The Cozy AI Agent Cafe & Bakery
 
+> **Author & Architect:** [Robina Mirbahar](https://github.com/RobinaMirbahar) (Google Developer Expert in Cloud & AI)  
+> **Focus:** Interactive Gamified Simulation Teaching RAG, Guardrails, Context Caching & Multi-Agent Workflows
+
+---
+
+## 🎯 Why I Built Prompt Paws: The Cozy 60 FPS AI Agent Cafe & Bakery (Engineering Purpose & Real-World Value)
+
+### 1. 🐾 Teaching Production AI Engineering Through Cozy Gameplay
+Dense architectural whitepapers on Context Caching, RAG latency, and Prompt Injection Guardrails can intimidate newcomers. I designed *Prompt Paws* to turn every core AI engineering pattern into an intuitive mechanic inside a 60 FPS cozy cat cafe.
+
+### 2. 🥐 Every Cafe Station Maps 1-to-1 to a Real LLM Subsystem
+In my simulation, the Recipe Book is **Vector RAG**, the Warm Pastry Case is **Context Caching** (slashing latency and token cost), the Health Inspector is **Deterministic Guardrails**, and the Kitchen Crew is **Multi-Agent Orchestration**.
+
+### 3. 🎮 Live Telemetry HUD for Workshops & Classrooms
+As players fulfill customer orders, a live HUD tracks p95 latency, token budget, and hallucination rates in real time.
+
+---
+
 > **A cozy, pastel kawaii 2D AI Systems & Agent Engineering simulation game where adorable Robot-Cat Chefs teach you Context Caching, Input Guardrails, RAG Grounding, Tool Calling, System-2 Reasoning, and Multi-Agent Orchestration!**
 
 [![Play Live on GitHub Pages](https://img.shields.io/badge/🎮_PLAY_LIVE_NOW-Prompt_Paws_Cozy_AI_Cafe-ff6b8b?style=for-the-badge)](https://robinamirbahar.github.io/cozy-ai-agent-cafe-game/)
@@ -157,3 +175,22 @@ npx serve .
 <div align="center">
   <img src="https://raw.githubusercontent.com/RobinaMirbahar/RobinaMirbahar/main/ProfileImages/GithubBanner.svg" alt="Robina Mirbahar Banner" width="100%" />
 </div>
+
+<!-- AUTHOR_SIGNATURE_START -->
+---
+
+## 👩‍💻 About the Author
+
+**Robina Mirbahar — Google Cloud & AI Architect**  
+*Google Developer Expert (GDE) in Cloud & AI • Published Author • Multi-Agent Systems & Serverless GPU Builder*
+
+[![GitHub](https://img.shields.io/badge/GitHub-RobinaMirbahar-181717?style=for-the-badge&logo=github)](https://github.com/RobinaMirbahar)
+[![Medium](https://img.shields.io/badge/Medium-@robinamirbahar-000000?style=for-the-badge&logo=medium)](https://medium.com/@robinamirbahar)
+[![DEV.to](https://img.shields.io/badge/DEV.to-robinamirbahar-0A0A0A?style=for-the-badge&logo=devdotto)](https://dev.to/robinamirbahar)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Robina_Mirbahar-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/robina-mirbahar)
+[![GDE Profile](https://img.shields.io/badge/Google_Developer_Expert-Profile-4285F4?style=for-the-badge&logo=google)](https://g.dev/RobinaMirbahar)
+[![YouTube](https://img.shields.io/badge/YouTube-@RobinaMirbahar-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/@RobinaMirbahar)
+[![X](https://img.shields.io/badge/X-@RobinaMirbahar-000000?style=for-the-badge&logo=x)](https://x.com/RobinaMirbahar)
+[![Amazon Author](https://img.shields.io/badge/Amazon_Book-Cloud_Computing_Voyage-FF9900?style=for-the-badge&logo=amazon)](https://www.amazon.com/dp/B0D146249R)
+
+<!-- AUTHOR_SIGNATURE_END -->

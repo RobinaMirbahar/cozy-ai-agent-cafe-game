@@ -2,7 +2,7 @@
 
 > **Author & Architect:** [Robina Mirbahar](https://github.com/RobinaMirbahar) ([Google Developer Expert in Cloud & AI](https://developers.google.com/profile/u/106918534005910641104?utm_campaign=deveco_gdemembers&utm_source=deveco) · Google Cloud Champion Innovator · Co-Author of [*AI Engineering*](https://www.amazon.com/dp/B0GWCZWCF4))  
 > 📚 **Companion Publications:** [Medium (Google Cloud) Featured Article](https://medium.com/google-cloud/i-built-a-cozy-60-fps-ai-agent-bakery-game-built-with-gemma-4-antigravity-to-teach-rag-9e36c43b8cbc) · [DEV.to (@gde) Article](https://dev.to/gde/i-built-a-cozy-60-fps-ai-agent-bakery-game-to-teach-rag-guardrails-context-caching-multi-agent-2ek) · [Play Live 60-FPS Game](https://robinamirbahar.github.io/cozy-ai-agent-cafe-game/)  
-> **Focus:** Interactive Gamified Simulation Teaching RAG, Guardrails, Context Caching & Multi-Agent Workflows
+> **Core Stack:** Open-Weights [Google Gemma 4](https://ai.google.dev/gemma/docs?utm_campaign=deveco_gdemembers&utm_source=deveco), [Google Antigravity](https://antigravity.google/?utm_campaign=deveco_gdemembers&utm_source=deveco), 60-FPS HTML5 Canvas Engine, RAG Indexing, Context Caching, and Prompt Guardrail Simulation.
 
 ---
 

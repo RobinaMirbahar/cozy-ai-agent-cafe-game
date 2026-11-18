@@ -111,23 +111,6 @@ flowchart LR
     Subagent -. "Boosts Nearby Chefs" .-> Reason
 
     Cache & Flash & RAG & Tools & Reason --> Pickup["🛎️ 5-Star Critter Pickup Window 💖"]
-    style CritterQueue fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
-    style O1 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style O2 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
-    style O3 fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
-    style O4 fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
-    style O5 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style O6 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
-    style KitchenPipeline fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
-    style Sieve fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
-    style n fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style Cache fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
-    style RAG fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
-    style Tools fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
-    style Flash fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
-    style Reason fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
-    style Subagent fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
-    style Pickup fill:#fce7f3,stroke:#db2777,stroke-width:2px,color:#831843
 ```
 
 ---
